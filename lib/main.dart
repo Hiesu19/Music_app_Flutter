@@ -44,29 +44,6 @@ class _MainPageState extends State<MainPage> {
         },
       ),
     ];
-
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: const Text('Music Player'),
-    //     backgroundColor: Colors.grey.shade500,
-    //   ),
-    //   backgroundColor: Colors.grey.shade300,
-    //   body: _pages[_currentIndexPage],
-    //   bottomNavigationBar: BottomNavigationBar(
-    //     backgroundColor: Colors.grey.shade400,
-    //     currentIndex: _currentIndexPage,
-    //     onTap: (index) {
-    //       setState(() {
-    //         _currentIndexPage = index;
-    //       });
-    //     },
-    //     items: const [
-    //       BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-    //       BottomNavigationBarItem(
-    //           icon: Icon(Icons.music_note), label: 'Danh sách'),
-    //     ],
-    //   ),
-    // );
     return Scaffold(
       appBar: AppBar(
         title: const Text(

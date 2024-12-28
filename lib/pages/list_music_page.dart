@@ -47,7 +47,6 @@ class _ListMusicPageState extends State<ListMusicPage> {
     }
   }
 
-  // Tải danh sách bài hát từ SharedPreferences
   Future<void> _loadSongs() async {
     final prefs = await SharedPreferences.getInstance();
     final songsString = prefs.getString('songs') ?? '[]';
@@ -109,6 +108,7 @@ class _ListMusicPageState extends State<ListMusicPage> {
           'link': filePath,
           'thum': randomThumb,
           'duration': duration?.inSeconds ?? 0,
+          'favorite': false,
         };
 
         setState(() {
