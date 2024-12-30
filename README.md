@@ -25,10 +25,10 @@ Bài tập Project I kỳ 2024.1 Trường Công nghệ Thông tin và Truyền 
    
 ## Screenshots
 
-![App Screenshot](https://github.com/Hiesu19/Music_app_Flutter/blob/main/assets/screenshot/home.png)
-
 <div>
-  <img src="assets/screenshot/home.png" height = 400 width= 200 />
+  <img src="assets/screenshot/home.png" height = 600 width= 300 />
+  <img src="assets/screenshot/list_music.png" height = 600 width= 300 />
+  <img src="assets/screenshotselect_file.png" height = 600 width= 300 />
 </div>
 ## Demo
 
