@@ -30,9 +30,9 @@ Bài tập Project I kỳ 2024.1 Trường Công nghệ Thông tin và Truyền 
   <img src="assets/screenshot/list_music.png" height = 500 width= 250 />
   <img src="assets/screenshot/select_file.png" height = 500 width= 250 />
 </div>
-## Demo
+## Download APK
 
-https://supershop3d2h.netlify.app/
+[https://supershop3d2h.netlify.app/](https://github.com/Hiesu19/Music_app_Flutter/releases/download/v1.1.0/Hiesu_player.v1.1.0.apk)
 
 
 ## Author
