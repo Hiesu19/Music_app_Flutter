@@ -31,7 +31,7 @@ Bài tập Project I kỳ 2024.1 Trường Công nghệ Thông tin và Truyền 
   <img src="assets/screenshot/select_file.png" height = 500 width= 250 />
 </div>
 
-## Download
+## Download APK
 
 [Download here](https://github.com/Hiesu19/Music_app_Flutter/releases/download/v1.1.0/Hiesu_player.v1.1.0.apk)
 
