@@ -28,7 +28,7 @@ Bài tập Project I kỳ 2024.1 Trường Công nghệ Thông tin và Truyền 
 <div>
   <img src="assets/screenshot/home.png" height = 500 width= 250 />
   <img src="assets/screenshot/list_music.png" height = 500 width= 250 />
-  <img src="assets/screenshotselect_file.png" height = 500 width= 250 />
+  <img src="assets/screenshot/select_file.png" height = 500 width= 250 />
 </div>
 ## Demo
 
