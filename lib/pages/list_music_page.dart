@@ -28,22 +28,17 @@ class _ListMusicPageState extends State<ListMusicPage> {
 
   // Yêu cầu quyền truy cập bộ nhớ
   Future<void> _requestPermissions() async {
-    // Yêu cầu quyền đọc và ghi bộ nhớ ngoài
     var status = await Permission.storage.request();
-
     if (status.isGranted) {
-      // Nếu quyền được cấp, thực hiện các thao tác tiếp theo
       print("Đã được cấp quyền");
     } else {
-      // Nếu quyền bị từ chối, hiển thị thông báo
       print("Bị từ chối quyền");
     }
-
-    // Nếu sử dụng Android 11 trở lên, yêu cầu quyền MANAGE_EXTERNAL_STORAGE
+    //  Android 11 trở lên
     if (await Permission.manageExternalStorage.request().isGranted) {
       print("AR11 đã đc cấp quyền ");
     } else {
-      print("AR11 đã đc cấp quyền ");
+      print("AR11 đã ko dc cấp quyền ");
     }
   }
 
@@ -55,15 +50,30 @@ class _ListMusicPageState extends State<ListMusicPage> {
     });
   }
 
-  // Lưu danh sách bài hát vào SharedPreferences
+  // Lưu danh sách bài hát
   Future<void> _saveSongs() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString('songs', json.encode(_songs));
   }
+  // Lưu vi tri bài hát
+  Future<void> _saveIndexSongs(int index) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setInt('indexSong', index);
+  }
+
+  Future<void> _saveSongData(List<Map<String, dynamic>> songs, int currentIndex) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    Map<String, dynamic> songData = {
+      'songs': songs,
+      'currentIndex': currentIndex,
+    };
+    prefs.setString('songData', json.encode(songData));
+  }
 
   Future<void> _addSongsFromFiles() async {
     try {
-      // Sử dụng FilePicker để chọn một hoặc nhiều bài hát
+      // chọn một hoặc nhiều bài hát
       final result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['mp3'],
@@ -74,9 +84,7 @@ class _ListMusicPageState extends State<ListMusicPage> {
         debugPrint('Không có bài hát nào được chọn.');
         return;
       }
-
       int addedCount = 0;
-
       for (var file in result.files) {
         final filePath = file.path!;
         final fileName = file.name;
@@ -108,18 +116,14 @@ class _ListMusicPageState extends State<ListMusicPage> {
           'link': filePath,
           'thum': randomThumb,
           'duration': duration?.inSeconds ?? 0,
-          'favorite': false,
+          'favorite': true,
         };
-
         setState(() {
           _songs.add(newSong);
         });
         addedCount++;
       }
-
       await _saveSongs();
-
-      // Hiển thị thông báo kết quả
       if (addedCount > 0) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Đã thêm $addedCount bài hát.')),
@@ -129,7 +133,6 @@ class _ListMusicPageState extends State<ListMusicPage> {
           SnackBar(content: Text('Không có bài hát mới nào được thêm.')),
         );
       }
-
       debugPrint('Đã thêm $addedCount bài hát.');
     } catch (e) {
       debugPrint('Lỗi khi thêm bài hát: $e');
@@ -161,11 +164,9 @@ class _ListMusicPageState extends State<ListMusicPage> {
         final filePath = file.path;
         final fileName = file.uri.pathSegments.last;
         final thumPath = 'assets/images/artwork2.jpg';
-        // Kiểm tra trùng lặp
         if (_songs.any((song) => song['name'] == fileName)) {
           continue;
         }
-
         final duration = await _getAudioDuration(filePath);
 
         Map<String, dynamic> newSong = {
@@ -173,8 +174,8 @@ class _ListMusicPageState extends State<ListMusicPage> {
           'link': filePath,
           'thum': thumPath,
           'duration': duration?.inSeconds ?? 0,
+          'favorite': true,
         };
-
         setState(() {
           _songs.add(newSong);
         });
@@ -197,7 +198,7 @@ class _ListMusicPageState extends State<ListMusicPage> {
     }
   }
 
-  // Lấy độ dài của file nhạc
+  // Lấy độ dài
   Future<Duration?> _getAudioDuration(String filePath) async {
     try {
       final player = AudioPlayer();
@@ -246,6 +247,7 @@ class _ListMusicPageState extends State<ListMusicPage> {
                       'songs': _songs,
                       'currentIndex': index,
                     });
+                    _saveSongData(_songs, index);
                   },
                 ),
               );
@@ -274,7 +276,7 @@ class _ListMusicPageState extends State<ListMusicPage> {
     );
   }
 
-  // Hiển thị hộp thoại xác nhận xóa bài hát
+  // Hiển thị hộp thoại xác nhận xóa
   void _showDeleteDialog(BuildContext context, int index) {
     showDialog(
       context: context,

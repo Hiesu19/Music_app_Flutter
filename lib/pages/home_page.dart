@@ -46,11 +46,9 @@ class _HomePageState extends State<HomePage> {
     _player.playerStateStream.listen((state) {
       if (state.processingState == ProcessingState.completed) {
         if (_isRepeat) {
-          // Lặp lại bài hiện tại
           _player.seek(Duration.zero);
           _player.play();
         } else {
-          // Chuyển sang bài tiếp theo
           _playNext();
           setState(() {
             _currentPosition = Duration.zero;
@@ -307,7 +305,7 @@ class _HomePageState extends State<HomePage> {
                 )
               : const Text(
                   'Không có bài hát nào được chọn.',
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
         ),
       ],

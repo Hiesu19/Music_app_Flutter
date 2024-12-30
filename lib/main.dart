@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
 import 'pages/list_music_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 void main() {
   runApp(const MyApp());
@@ -30,24 +32,53 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   int _currentIndexPage = 0;
   Map<String, dynamic>? _selectedSong;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadSelectedSong();
+  }
+
+  // Hàm tải dữ liệu đã lưu từ SharedPreferences
+  Future<void> _loadSelectedSong() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? songDataString = prefs.getString('songData');
+    if (songDataString != null) {
+      Map<String, dynamic> songData = json.decode(songDataString);
+      setState(() {
+        _selectedSong = songData;
+        _isLoading = false;
+      });
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
     final List<Widget> _pages = [
-      HomePage(songs: _selectedSong),
+      HomePage(songs: _selectedSong ?? {}),
       ListMusicPage(
         onSelectSong: (selectedSong) {
           setState(() {
+            print('Hello  $selectedSong');
             _selectedSong = selectedSong;
-            _currentIndexPage = 0; // Quay lại Home
+            _currentIndexPage = 0;
           });
         },
       ),
     ];
+
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Music Player',
+          'Hiesu Player',
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 22,
@@ -75,6 +106,5 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
     );
-
   }
 }
