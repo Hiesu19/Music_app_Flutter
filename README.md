@@ -1,16 +1,42 @@
-# music_player
 
-A new Flutter project.
+# Ứng dụng Phát nhạc Hiesu player đơn giản
 
-## Getting Started
+Bài tập Project I kỳ 2024.1 Trường Công nghệ Thông tin và Truyền thông. Ứng dụng phát nhạc .mp3 đơn giản lấy trong bộ nhớ bằng Flutter.
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Installation
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Hiesu19/Music_app_Flutter.git
+   ```
+2. Install packages
+   ```sh
+   flutter pub get
+   ```
+3. Start your application Android
+   ```
+   flutter run
+   ```
+4. Build APK file
+    ```
+    flutter build apk
+    ```
+   
+## Screenshots
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![App Screenshot](https://github.com/Hiesu19/Music_app_Flutter/blob/main/assets/screenshot/home.png)
+
+<div>
+  <img src="assets/screenshot/home.png" height = 400 width= 200 />
+</div>
+## Demo
+
+https://supershop3d2h.netlify.app/
+
+
+## Author
+
+- Nguyễn Thái Hiếu: 20225127 [@Hiesu19](https://github.com/Hiesu19)
+
+
