@@ -163,19 +163,34 @@ class _ListMusicPageState extends State<ListMusicPage> {
       for (var file in files) {
         final filePath = file.path;
         final fileName = file.uri.pathSegments.last;
-        final thumPath = 'assets/images/artwork2.jpg';
         if (_songs.any((song) => song['name'] == fileName)) {
           continue;
         }
         final duration = await _getAudioDuration(filePath);
 
+        List<String> thumbList = [
+          'assets/images/art_work_1.jpg',
+          'assets/images/art_work_2.jpg',
+          'assets/images/art_work_3.jpg',
+          'assets/images/art_work_4.jpg',
+          'assets/images/art_work_5.jpg',
+          'assets/images/art_work_6.jpg',
+          'assets/images/art_work_7.jpg',
+          'assets/images/art_work_8.jpg',
+        ];
+
+        // Chọn ngẫu nhiên
+        final random = Random();
+        String randomThumb = thumbList[random.nextInt(thumbList.length)];
+
         Map<String, dynamic> newSong = {
           'name': fileName,
           'link': filePath,
-          'thum': thumPath,
+          'thum': randomThumb,
           'duration': duration?.inSeconds ?? 0,
           'favorite': true,
         };
+
         setState(() {
           _songs.add(newSong);
         });
