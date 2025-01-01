@@ -33,7 +33,7 @@ Bài tập Project I kỳ 2024.1 Trường Công nghệ Thông tin và Truyền 
 
 ## Download APK
 
-[Download here](https://github.com/Hiesu19/Music_app_Flutter/releases/download/v1.1.0/Hiesu_player.v1.1.0.apk)
+[Download here](https://github.com/Hiesu19/Music_app_Flutter/releases/download/v1.1.1/Hiesu_player.v1.1.1.apk)
 
 
 ## Author
